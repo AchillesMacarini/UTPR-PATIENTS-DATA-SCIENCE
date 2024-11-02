@@ -1,4 +1,4 @@
-# UTPR-PATIENTS-DATA-SCIENCE
+# UTFPR-PATIENTS-DATA-SCIENCE
 This project aims to analyze a dataset of medical patients, sourced from Kaggle (link to dataset). Our objective is to apply data science techniques to gain insights into the medical field, with a focus on patterns in patient demographics, conditions, and medical history.
 
 ## Dataset Information
