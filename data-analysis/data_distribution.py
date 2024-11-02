@@ -1,7 +1,5 @@
 import import_data
 import matplotlib.pyplot as plt
-import pandas as pd
-import os
 
 rand_features = import_data.features.sample(n=10, random_state=1, axis=1)
 
