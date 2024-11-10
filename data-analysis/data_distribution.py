@@ -1,24 +1,29 @@
 import import_data
 import matplotlib.pyplot as plt
+import os
 
-rand_features = import_data.features.sample(n=10, random_state=1, axis=1)
+output_dir = r'.\figures\distribution'
+os.makedirs(output_dir, exist_ok=True)
 
-fig, axes = plt.subplots(nrows=2, ncols=5, figsize=(18, 10))
-axes = axes.flatten()
+features = import_data.features
 
-for i, coluna in enumerate(rand_features.columns):
+for i, coluna in enumerate(features.columns, start=1):
+    plt.figure(figsize=(9, 5))
     for classe in import_data.classes.unique():
         subset = import_data.data[import_data.classes == classe]
-        class_name = import_data.general_health_data['GeneralHealth'][classe]
-        axes[i].hist(subset[coluna], bins=30, alpha=0.5, label=f'{class_name}', density=True)
+        class_name = classe
+        plt.hist(subset[coluna], bins=30, alpha=0.5, label=f'{class_name}', density=True)
     
-    axes[i].set_xlim(import_data.features[coluna].min(), import_data.features[coluna].max())
-    axes[i].set_ylim(0, axes[i].get_ylim()[1])
+    plt.xlim(import_data.features[coluna].min(), import_data.features[coluna].max())
+    plt.ylim(0, plt.gca().get_ylim()[1])
+    plt.title(f'{coluna}')
+    plt.ylabel('Density')
+    plt.legend()
+    plt.grid(True)
+    plt.tight_layout()
     
-    axes[i].set_title(f'{coluna}')
-    axes[i].set_ylabel('Density')
-    axes[i].legend()
-    axes[i].grid(True)
+    output_path = os.path.join(output_dir, f'distribution_{i}_{coluna}.png')
+    plt.savefig(output_path)
+    plt.close()
 
-plt.tight_layout()
-plt.show()
+print(f'Charts saved in: {output_dir}')
