@@ -58,7 +58,7 @@ i = 0
 output_dir = r'.\figures\correlation'
 os.makedirs(output_dir, exist_ok=True)
 
-while i < 4:
+while i < 10:
     plt.figure(figsize=(12, 8))
     plt.scatter(data['GeneralHealth'], data[correlations.iloc[i]['Feature']], color=color_dict[i], label=correlations.iloc[i]['Feature'])
     plt.title('Plot Features with the biggest Correlation')
